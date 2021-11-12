@@ -1,13 +1,14 @@
-import { useState } from "react"
+import { useState } from "react";
 
 export const Login = () => {
 
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
 
-    const register = (e) => {
+    const login = (e) => {
         e.preventDefault();
-        console.log(email, pass)
+        console.log(email, pass);
+        
 
         setEmail('');
         setPass('');
@@ -17,7 +18,7 @@ export const Login = () => {
         <div>
             <h3>Sign in</h3>
 
-            <form onSubmit={register}>
+            <form onSubmit={login}>
                 <input
                     namae='email'
                     type='email'

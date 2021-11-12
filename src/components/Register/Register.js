@@ -8,11 +8,24 @@ export const Register = () => {
 
     const register = (e) => {
         e.preventDefault();
-        console.log(email, pass, repeatPass)
+        console.log(email, pass, repeatPass);
 
-        setEmail('');
-        setPass('');
-        stRepeatPass('');
+        if (pass !== repeatPass) {
+            console.log('repeat pass is wrong!')
+        } else {
+            const user = {
+                email: 'email',
+                password: 'pass'
+            }
+    
+            localStorage.setItem('user', user);
+    
+            setEmail('');
+            setPass('');
+            stRepeatPass('');
+        }
+
+        
     }
 
     return(

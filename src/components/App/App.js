@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { useSelector } from 'react-redux';
+import { Routes, Route } from 'react-router-dom'
 
 import { ChangePassword } from '../ChangePassword/ChangePassword';
 import { Login } from '../Login/Login';
@@ -6,8 +7,10 @@ import { Register } from '../Register/Register'
 import './App.css';
 
 function App() {
+
+  const { isAuth } = useSelector(state => state.authReducer)
+
   return (
-    <Router>
     <div className="App">
       <div>
         <a href='/'>login</a>
@@ -15,17 +18,20 @@ function App() {
         <a href='/changepass'>changepass</a>
       </div>
       
-      <Routes>
-        <Route exact path='/' component={Login}/>
-        <Route path='/register' component={Register}/>
-        <Route path='/changepass' component={ChangePassword}/>
-      </Routes>
+      {
+        isAuth  ?
+        <Routes>
+          <Route path='/changepass' element={<ChangePassword/>}/>
+        </Routes>
+        :
+        <Routes>
+          <Route path='/' element={<Login/>}/>
+          <Route path='/register' element={<Register/>}/>
+        </Routes>
+      }
       
-      {/* <Login/>
-      <Register/>
-      <ChangePassword/> */}
+      
     </div>
-    </Router>
   );
 }
 
